@@ -5,5 +5,7 @@
 
 <div class="bg-zinc-900 text-zinc-50">
   <Navbar />
-  <slot />
+  <main>
+    <slot />
+  </main>
 </div>
