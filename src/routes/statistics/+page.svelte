@@ -23,12 +23,12 @@
   async function getEthereumHistory(event) {
     if (!event) return;
     ethereumHistory = {};
-    ethereumHistory = await getPriceHistory(event.detail.time, "BTCUSDT");
+    ethereumHistory = await getPriceHistory(event.detail.time, "ETHUSDT");
   }
 </script>
 
 <article
-  class="px-4 flex flex-col justify-center items-center w-full py-24"
+  class="px-4 flex flex-col justify-center items-center w-full pt-24 pb-10"
   aria-label="AI timeline"
 >
   {#if show}
@@ -48,7 +48,7 @@
     <div
       class="container flex gap-8 flex-col items-center justify-center text-center"
     >
-      <div class="grid grid-cols-2 gap-8 w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-full">
         <div class="border-2 border-zinc-50 rounded-md pt-4 w-full">
           <div class="h-96">
             <TimeIntervalChart

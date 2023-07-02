@@ -1,9 +1,14 @@
 const API = "https://directus-production-ff82.up.railway.app/";
 
 export async function getHistory() {
-  let response = await fetch(API + "items/History");
-  let json = await response.json();
-  return json.data;
+  try {
+    let response = await fetch(API + "items/History");
+    let json = await response.json();
+    return json.data;
+  } catch (error) {
+    console.error(error);
+  }
+  return [];
 }
 
 export async function getGallery(limit = null, page = 0) {
@@ -22,6 +27,7 @@ export async function getGallery(limit = null, page = 0) {
   } catch (error) {
     console.error(error);
   }
+  return [];
 }
 
 export async function getShowcase(limit) {
@@ -38,4 +44,5 @@ export async function getShowcase(limit) {
   } catch (error) {
     console.error(error);
   }
+  return [];
 }

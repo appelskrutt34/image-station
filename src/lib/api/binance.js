@@ -1,6 +1,6 @@
 const apiEndpoint = "https://api.binance.com/api/v3/klines";
 
-export async function getPriceHistory(time, symbol = "BTCUSDT") {
+export async function getPriceHistory(time, symbol) {
   let endTime;
   let startTime;
   let interval;

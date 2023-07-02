@@ -3,6 +3,7 @@
   import NavLink from "./NavLink.svelte";
 
   import { introduction, ethics } from "$lib/data/categories";
+  import { fade, scale, slide } from "svelte/transition";
 
   let openMenu = false;
 </script>
@@ -16,7 +17,7 @@
     </a>
 
     <DropdownMenu items={introduction}>
-      <NavLink text="AI Dropdown" link="" />
+      <NavLink text="About AI" link="" />
     </DropdownMenu>
     <NavLink text="Graphs" link="/statistics" />
     <DropdownMenu items={ethics}>
@@ -35,18 +36,42 @@
     }}
   >
     {#if openMenu}
-      <o class="lnr lnr-cross text-2xl" />
+      <i in:fade class="lnr lnr-cross text-2xl" />
     {:else}
-      <i class="lnr lnr-menu text-2xl" />
+      <i in:fade class="lnr lnr-menu text-2xl" />
     {/if}
   </button>
 
   {#if openMenu}
-    <div class="w-full aboslute flex flex-col gap-6 items-center">
-      <a href="">Explore</a>
-      <a href="">Learn</a>
-      <a href="">Shop</a>
-      <a href="">Jobs</a>
+    <div
+      in:slide
+      out:slide
+      class="w-full aboslute flex flex-col gap-6 items-center text-zinc-50"
+    >
+      <a
+        href="/"
+        on:click={() => {
+          openMenu = !openMenu;
+        }}>Home page</a
+      >
+      <a
+        href="/history"
+        on:click={() => {
+          openMenu = !openMenu;
+        }}>Timeline</a
+      >
+      <a
+        href="/gallery"
+        on:click={() => {
+          openMenu = !openMenu;
+        }}>Art gallery</a
+      >
+      <a
+        href="/statistics"
+        on:click={() => {
+          openMenu = !openMenu;
+        }}>Graphs</a
+      >
     </div>
   {/if}
 </nav>

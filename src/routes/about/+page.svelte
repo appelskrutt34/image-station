@@ -8,7 +8,7 @@
 </script>
 
 <article
-  class="px-4 flex flex-col items-center justify-center w-full pt-24 pb-20 lg:pb-0"
+  class="px-4 flex flex-col items-center justify-center w-full pt-24 pb-10"
   aria-label="Introduction to AI"
 >
   {#if show}

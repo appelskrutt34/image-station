@@ -20,10 +20,7 @@
   });
 </script>
 
-<article
-  class="px-4 flex flex-col w-full pt-24 pb-20 lg:pb-0"
-  aria-label="AI timeline"
->
+<article class="px-4 flex flex-col w-full pt-24 pb-10" aria-label="AI timeline">
   {#if show}
     <div in:fade>
       <div class="pb-16 text-center">

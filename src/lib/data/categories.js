@@ -1,7 +1,11 @@
 export const introduction = [
   {
     link: "/history",
-    text: "AI Timeline",
+    text: "Timeline",
+  },
+  {
+    link: "/about",
+    text: "Introduction",
   },
   {
     link: "/gallery",

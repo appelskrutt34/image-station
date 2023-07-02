@@ -38,7 +38,7 @@
 </script>
 
 <article
-  class="px-4 flex flex-col items-center w-full pt-16 pb-20 lg:pb-0"
+  class="px-4 flex flex-col items-center w-full pt-24 pb-10"
   aria-label="AI art gallery"
 >
   {#if show}

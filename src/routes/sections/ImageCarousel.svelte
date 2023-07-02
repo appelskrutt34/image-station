@@ -5,8 +5,7 @@
   export let images = [];
   let innerWidth = 0;
   let innerHeight = 0;
-  $: particlesToShow =
-    innerWidth > 1024 ? 6 : innerWidth > 768 ? 4 : innerWidth <= 640 ? 1 : 2;
+  $: particlesToShow = innerWidth > 1024 ? 6 : innerWidth > 768 ? 4 : 2;
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
