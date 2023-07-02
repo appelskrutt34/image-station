@@ -2,70 +2,26 @@
   import DropdownMenu from "./DropdownMenu.svelte";
   import NavLink from "./NavLink.svelte";
 
-  let menuItems = [
-    {
-      link: "",
-      icon: "lnr lnr-drop",
-      text: "Gallery",
-    },
-    {
-      link: "",
-      icon: "lnr lnr-sun",
-      text: "Blogs",
-    },
-    {
-      link: "",
-      icon: "lnr lnr-cloud",
-      text: "Magazine",
-    },
-  ];
+  import { introduction, ethics } from "$lib/data/categories";
 
   let openMenu = false;
 </script>
 
 <nav
-  class="bg-zinc-900 text-zinc-500 fixed top-0 px-6 h-20 w-full hidden md:flex justify-center z-10"
+  class="bg-zinc-900 text-zinc-500 fixed top-0 px-6 h-16 w-full hidden md:flex justify-center z-10"
 >
   <div class="container flex-row items-center flex gap-6">
-    <a href="/"><span class="lnr lnr-bug text-4xl" /></a>
+    <a href="/"
+      ><img src="logo-no-text.png" alt="logo" class="h-12 w-auto" />
+    </a>
 
-    <DropdownMenu items={menuItems}>
-      <NavLink text="Explore" link="" />
+    <DropdownMenu items={introduction}>
+      <NavLink text="AI Dropdown" link="" />
     </DropdownMenu>
-
-    <DropdownMenu items={menuItems}>
-      <NavLink text="Learn" link="" />
+    <NavLink text="Graphs" link="/statistics" />
+    <DropdownMenu items={ethics}>
+      <NavLink text="Cookies" link="" />
     </DropdownMenu>
-
-    <DropdownMenu items={menuItems}>
-      <NavLink text="Shop" link="" />
-    </DropdownMenu>
-
-    <DropdownMenu items={menuItems}>
-      <NavLink text="Jobs" link="" />
-    </DropdownMenu>
-
-    <div class="relative w-full">
-      <i
-        class="lnr lnr-magnifier absolute"
-        style="padding-top: 10px; padding-left: 10px"
-      />
-      <input
-        class="rounded-2xl border-zinc-500 border-2 bg-transparent py-1 pl-8 pr-4 w-full"
-        type="text"
-        placeholder="Search"
-      />
-    </div>
-
-    <i class="lnr lnr-cart text-2xl" />
-    <button class="bg-zinc-500 text-zinc-50 px-5 py-2 rounded-xl min-w-fit"
-      ><i class="lnr lnr-pencil pr-1" /> Sign up
-    </button>
-    <button class="bg-zinc-500 text-zinc-50 px-5 py-2 rounded-xl min-w-fit">
-      <i class="lnr lnr-pointer-right pr-1" />Sign in</button
-    >
-
-    <a href=""><div class="border-zinc-500 border-r-4 border-dotted h-6" /></a>
   </div>
 </nav>
 

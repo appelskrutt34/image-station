@@ -18,6 +18,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"svelte-carousel": "^1.0.25"
+		"apexcharts": "^3.41.0",
+		"svelte-carousel": "^1.0.25",
+		"svelte-vertical-timeline": "^1.0.0"
 	}
 }

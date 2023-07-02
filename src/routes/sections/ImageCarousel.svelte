@@ -1,30 +1,44 @@
 <script>
   import Carousel from "svelte-carousel";
   import { browser } from "$app/environment";
-  let images = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-
+  import IconButton from "../../lib/components/shared/IconButton.svelte";
+  export let images = [];
   let innerWidth = 0;
   let innerHeight = 0;
-
-  $: particlesToShow = innerWidth > 768 ? 4 : 2;
+  $: particlesToShow =
+    innerWidth > 1024 ? 6 : innerWidth > 768 ? 4 : innerWidth <= 640 ? 1 : 2;
 </script>
 
 <svelte:window bind:innerWidth bind:innerHeight />
 
 <div>
   {#if browser}
-    <Carousel {particlesToShow} particlesToScroll={1} dots={false}>
-      {#each images as image}
+    <Carousel
+      autoplay
+      let:showPrevPage
+      let:showNextPage
+      {particlesToShow}
+      particlesToScroll={1}
+      dots={false}
+      auto={true}
+    >
+      <button slot="prev" disabled>
+        <IconButton action={showPrevPage} icon="lnr lnr-chevron-left" />
+      </button>
+
+      {#each images as img}
         <div class="p-2 bg-transparent">
-          <button
-            class="bg-zinc-500 p-14 rounded-md group transition-all text-center w-full"
-          >
-            <h1 class="group-hover:scale-125 transition-all">
-              {image}
-            </h1>
-          </button>
+          <img
+            style="height: 20vw; min-height: 300px; max-height: 400px;"
+            src={img}
+            alt="showcase"
+            class="rounded-md object-cover w-full"
+          />
         </div>
       {/each}
+      <button slot="next" disabled>
+        <IconButton action={showNextPage} icon="lnr lnr-chevron-right" />
+      </button>
     </Carousel>
   {/if}
 </div>

@@ -2,6 +2,6 @@ import { getGallery } from "$lib/api/directus";
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {
-  const showcase = await getGallery(8);
-  return { showcase };
+  const pictures = await getGallery(24, 0);
+  return { pictures };
 }
