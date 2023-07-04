@@ -1,18 +1,32 @@
 <script>
-  import { onMount } from "svelte";
-  import { fade } from "svelte/transition";
+  import { onDestroy, onMount } from "svelte";
+  import { fade, scale } from "svelte/transition";
 
-  import TimeIntervalChart from "../../lib/components/charts/TimeIntervalChart.svelte";
-  import { getPriceHistory } from "$lib/api/binance";
-  import BaseChart from "../../lib/components/charts/BaseChart.svelte";
+  import TimeIntervalChart from "$lib/components/charts/TimeIntervalChart.svelte";
+  import { getPriceHistory, getCurrentPrice } from "$lib/api/binance";
+  import BaseChart from "$lib/components/charts/BaseChart.svelte";
   export let data;
 
   let bitcoinHistory = data.bitcoinHistory;
   let ethereumHistory = data.ethereumHistory;
+  let bnbPrice = data.bnbPrice;
+  let tetherPrice = data.tetherPrice;
   let show = false;
+  let dogePrice = data.dogePrice;
+  let priceInterval;
 
   onMount(() => {
     show = true;
+
+    priceInterval = setInterval(async () => {
+      bnbPrice = await getBNBPrice();
+      tetherPrice = await getTetherPrice();
+      dogePrice = await getDogePrice();
+    }, 1000 * 10);
+  });
+
+  onDestroy(() => {
+    clearInterval(priceInterval);
   });
 
   async function getBitcoinHistory(event) {
@@ -25,11 +39,24 @@
     ethereumHistory = {};
     ethereumHistory = await getPriceHistory(event.detail.time, "ETHUSDT");
   }
+  async function getBNBPrice() {
+    bnbPrice = 0;
+    return await getCurrentPrice("BNBUSDT");
+  }
+  async function getTetherPrice() {
+    tetherPrice = 0;
+    return await getCurrentPrice("TUSDT");
+  }
+  async function getDogePrice() {
+    dogePrice = 0;
+    return await getCurrentPrice("DOGEUSDT");
+  }
 </script>
 
 <article
-  class="px-4 flex flex-col justify-center items-center w-full pt-24 pb-10"
+  class="px-4 flex flex-col justify-center items-center w-full py-24 lg:py-0"
   aria-label="AI timeline"
+  style="min-height: 100vh;"
 >
   {#if show}
     <div in:fade>
@@ -77,6 +104,7 @@
           </div>
         </div>
 
+        <!--- 
         <div class="border-2 border-zinc-50 rounded-md pt-4">
           <h2>Blue vs Green</h2>
           <div class="h-96">
@@ -116,6 +144,47 @@
               ]}
               id="statistics2"
             />
+          </div>
+        </div>-->
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8 w-full">
+        <div
+          class="h-44 border-2 border-zinc-50 rounded-md py-4 justify-center flex flex-col"
+        >
+          <h2 class="pb-4">BNB</h2>
+          <div class="h-full flex items-center justify-center">
+            {#if bnbPrice > 0}
+              <p in:scale out:scale class="text-2xl lg:text-6xl font-bold">
+                {bnbPrice}$
+              </p>
+            {/if}
+          </div>
+        </div>
+
+        <div
+          class="h-44 border-2 border-zinc-50 rounded-md py-4 justify-center flex flex-col"
+        >
+          <h2 class="pb-4">Tether</h2>
+          <div class="h-full flex items-center justify-center">
+            {#if tetherPrice > 0}
+              <p in:scale out:scale class="text-2xl lg:text-6xl font-bold">
+                {tetherPrice}$
+              </p>
+            {/if}
+          </div>
+        </div>
+
+        <div
+          class="h-44 border-2 border-zinc-50 rounded-md py-4 justify-center flex flex-col"
+        >
+          <h2 class="pb-4">DOGE</h2>
+          <div class="h-full flex items-center justify-center">
+            {#if dogePrice > 0}
+              <p in:scale out:scale class="text-2xl lg:text-6xl font-bold">
+                {dogePrice}$
+              </p>
+            {/if}
           </div>
         </div>
       </div>

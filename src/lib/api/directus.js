@@ -12,6 +12,7 @@ export async function getHistory() {
 }
 
 export async function getGallery(limit = null, page = 0) {
+  let tries;
   const queryParams = new URLSearchParams({
     limit: limit,
     page: page,
@@ -21,6 +22,12 @@ export async function getGallery(limit = null, page = 0) {
     const url = `${API}files?${queryParams.toString()}`;
     const response = await fetch(url);
     let json = await response.json();
+
+    if (!json && tries < 3) {
+      tries++;
+      getGallery();
+    }
+
     return json.data.map(function (i) {
       return API + "assets/" + i.id;
     });
@@ -38,6 +45,7 @@ export async function getShowcase(limit) {
     const url = `${API}files?${queryParams.toString()}`;
     const response = await fetch(url);
     let json = await response.json();
+    console.log("json" + JSON.stringify(json));
     return json.data.map(function (i) {
       return API + "assets/" + i.id;
     });

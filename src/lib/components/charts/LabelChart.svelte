@@ -5,31 +5,35 @@
 
   export let type = "area";
   export let data = [];
-  export let labels = [
-    "2018-09-19T00:00:00.000Z",
-    "2018-09-19T01:30:00.000Z",
-    "2018-09-19T02:30:00.000Z",
-    "2018-09-19T03:30:00.000Z",
-    "2018-09-19T04:30:00.000Z",
-    "2018-09-19T05:30:00.000Z",
-    "2018-09-19T06:30:00.000Z",
-  ];
+  export let labels = [];
   export let id = "";
   export let colors = COLORS;
+  export let yFormatter = (v) => {
+    return v;
+  };
 
-  function getLocaleString(d) {
-    if (!d) return d;
-    return new Date(d).toLocaleString();
+  function formatDate(d) {
+    d = new Date(d);
+    var month = d.getMonth();
+    var day = d.getDate().toString().padStart(2, "0");
+    var year = d.getFullYear();
+    year = year.toString().substr(-2);
+    month = (month + 1).toString().padStart(2, "0");
+    return month + "/" + day + "/" + year;
   }
 
   var options = {
     series: data,
     chart: {
+      foreColor: "#fafafa",
       type: type,
       height: "100%",
       width: "100%",
-      sparkline: {
-        enabled: true,
+      toolbar: {
+        show: false,
+      },
+      zoom: {
+        enabled: false,
       },
     },
     stroke: {
@@ -43,24 +47,32 @@
     grid: {
       show: false,
     },
-    xaxis: {
+    yaxis: {
+      opposite: true,
       labels: {
-        show: false,
-        formatter: getLocaleString,
+        formatter: yFormatter,
+      },
+    },
+    xaxis: {
+      tickPlacement: "between",
+      tickAmount: $innerWidth > 768 ? 4 : 2,
+      labels: {
+        formatter: formatDate,
+        hideOverlappingLabels: true,
         rotate: 0,
-        offsetX: 10,
+        offsetX: 4,
       },
       tooltip: {
         enabled: false,
       },
     },
-    tooltip: {
-      enabled: $innerWidth > 768 ? true : false,
-    },
+    labels: labels,
     dataLabels: {
       enabled: false,
     },
-    labels: labels,
+    tooltip: {
+      enabled: $innerWidth > 768 ? true : false,
+    },
     legend: {
       show: false,
     },

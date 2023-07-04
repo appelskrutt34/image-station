@@ -1,6 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { createEventDispatcher } from "svelte";
+  import { innerWidth } from "$lib/stores/data";
 
   const dispatch = createEventDispatcher();
 
@@ -14,6 +15,16 @@
   function getLocaleString(d) {
     if (!d) return d;
     return new Date(d).toLocaleString();
+  }
+
+  function getSmallDate(d) {
+    d = new Date(d);
+    var month = d.getMonth();
+    var day = d.getDate().toString().padStart(2, "0");
+    var year = d.getFullYear();
+    year = year.toString().substr(-2);
+    month = (month + 1).toString().padStart(2, "0");
+    return month + "/" + day + "/" + year;
   }
 
   let hourButton, hoursButton, weekButton, activeButton;
@@ -39,9 +50,42 @@
 
   $: update(data);
 
-  var options = {
+  let xaxis =
+    $innerWidth < 768
+      ? {
+          tickPlacement: "between",
+          labels: {
+            formatter: getSmallDate,
+            rotate: 0,
+            offsetX: 4,
+            hideOverlappingLabels: true,
+          },
+          tooltip: {
+            enabled: false,
+          },
+        }
+      : {
+          labels: {
+            maxHeight: 5,
+            show: false,
+            rotate: 0,
+            formatter: getLocaleString,
+          },
+          axisBorder: {
+            show: false,
+          },
+          axisTicks: {
+            show: false,
+          },
+          tooltip: {
+            enabled: false,
+          },
+        };
+
+  let options = {
     series: [data],
     chart: {
+      foreColor: "#fafafa",
       type: "area",
       height: "100%",
       width: "100%",
@@ -60,23 +104,11 @@
     grid: {
       show: false,
     },
-    xaxis: {
-      labels: {
-        maxHeight: 5,
-        show: false,
-        rotate: 0,
-        formatter: getLocaleString,
-      },
-      axisBorder: {
-        show: false,
-      },
-      axisTicks: {
-        show: false,
-      },
-      tooltip: {
-        enabled: false,
-      },
+    xaxis: xaxis,
+    tooltip: {
+      enabled: $innerWidth > 768 ? true : false,
     },
+    labels: labels,
     yaxis: {
       tickAmount: 4,
       opposite: true,
@@ -85,7 +117,7 @@
     dataLabels: {
       enabled: false,
     },
-    labels: labels,
+
     legend: {
       show: false,
     },

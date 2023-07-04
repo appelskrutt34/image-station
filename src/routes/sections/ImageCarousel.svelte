@@ -2,13 +2,10 @@
   import Carousel from "svelte-carousel";
   import { browser } from "$app/environment";
   import IconButton from "../../lib/components/shared/IconButton.svelte";
+  import { innerWidth } from "$lib/stores/data";
   export let images = [];
-  let innerWidth = 0;
-  let innerHeight = 0;
-  $: particlesToShow = innerWidth > 1024 ? 6 : innerWidth > 768 ? 4 : 2;
+  $: particlesToShow = $innerWidth > 1024 ? 6 : $innerWidth > 768 ? 4 : 2;
 </script>
-
-<svelte:window bind:innerWidth bind:innerHeight />
 
 <div>
   {#if browser}

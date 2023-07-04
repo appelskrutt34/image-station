@@ -1,5 +1,3 @@
-const apiEndpoint = "https://api.binance.com/api/v3/klines";
-
 export async function getPriceHistory(time, symbol) {
   let endTime;
   let startTime;
@@ -34,13 +32,13 @@ export async function getPriceHistory(time, symbol) {
 
   try {
     const response = await fetch(
-      `${apiEndpoint}?symbol=${symbol}&interval=${interval}&startTime=${startTime}&endTime=${endTime}&limit=${limit}`
+      `https://api.binance.com/api/v3/klines?symbol=${symbol}&interval=${interval}&startTime=${startTime}&endTime=${endTime}&limit=${limit}`
     );
-    const json = await response.json();
-    let prices = json.map((i) => {
+    const data = await response.json();
+    let prices = data.map((i) => {
       return parseFloat(i[4]).toFixed(2);
     });
-    let timestamps = json.map((i) => {
+    let timestamps = data.map((i) => {
       return new Date(i[0]).toLocaleString();
     });
     return { prices, timestamps };
@@ -48,4 +46,21 @@ export async function getPriceHistory(time, symbol) {
     console.error(error);
   }
   return [];
+}
+
+export async function getCurrentPrice(symbol) {
+  try {
+    const response = await fetch(
+      `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`
+    );
+    const data = await response.json();
+    if (response.ok) {
+      const price = parseFloat(data.price);
+      return price;
+    } else {
+      console.log(`Unable to fetch ${symbol} price.`);
+    }
+  } catch (error) {
+    console.log("Error:", error.message);
+  }
 }

@@ -20,7 +20,11 @@
   });
 </script>
 
-<article class="px-4 flex flex-col w-full pt-24 pb-10" aria-label="AI timeline">
+<article
+  class="px-4 flex flex-col w-full justify-center py-24 lg:py-0"
+  aria-label="AI timeline"
+  style="min-height: 100vh;"
+>
   {#if show}
     <div in:fade>
       <div class="pb-16 text-center">

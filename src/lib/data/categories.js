@@ -26,13 +26,13 @@ export const applications = [
     text: "Gaming",
   },
 ];
-export const ethics = [
+export const graphs = [
   {
-    link: "/social",
-    text: "AI and Social Impact",
+    link: "/tracker",
+    text: "ETH tracker",
   },
   {
-    link: "/data",
-    text: "Privacy and Data Protection",
+    link: "/statistics",
+    text: "Binance statistics",
   },
 ];

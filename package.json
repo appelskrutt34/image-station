@@ -19,7 +19,10 @@
 	"type": "module",
 	"dependencies": {
 		"apexcharts": "^3.41.0",
+		"dotenv": "^16.3.1",
+		"moralis": "^2.22.3",
 		"svelte-carousel": "^1.0.25",
-		"svelte-vertical-timeline": "^1.0.0"
+		"svelte-vertical-timeline": "^1.0.0",
+		"web3": "^4.0.2"
 	}
 }

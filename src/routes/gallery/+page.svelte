@@ -38,8 +38,9 @@
 </script>
 
 <article
-  class="px-4 flex flex-col items-center w-full pt-24 pb-10"
+  class="px-4 flex flex-col items-center w-full justify-center py-24 lg:py-0"
   aria-label="AI art gallery"
+  style="min-height: 100vh;"
 >
   {#if show}
     <div in:fade class="container">

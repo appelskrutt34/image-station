@@ -1,4 +1,5 @@
 import { getGallery } from "$lib/api/directus";
+export let ssr = true;
 
 /** @type {import('./$types').PageLoad} */
 export async function load() {

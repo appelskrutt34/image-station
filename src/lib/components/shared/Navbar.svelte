@@ -2,26 +2,25 @@
   import DropdownMenu from "./DropdownMenu.svelte";
   import NavLink from "./NavLink.svelte";
 
-  import { introduction, ethics } from "$lib/data/categories";
-  import { fade, scale, slide } from "svelte/transition";
+  import { introduction, graphs } from "$lib/data/categories";
+  import { fade, slide } from "svelte/transition";
 
   let openMenu = false;
 </script>
 
 <nav
-  class="bg-zinc-900 text-zinc-500 fixed top-0 px-6 h-16 w-full hidden md:flex justify-center z-10"
+  class="bg-zinc-900 text-zinc-500 fixed top-0 px-4 h-16 w-full hidden md:flex justify-center z-10"
 >
   <div class="container flex-row items-center flex gap-6">
-    <a href="/"
+    <a href="/" class="pr-8"
       ><img src="logo-no-text.png" alt="logo" class="h-12 w-auto" />
     </a>
 
     <DropdownMenu items={introduction}>
-      <NavLink text="About AI" link="" />
+      <NavLink text="AI" link="" />
     </DropdownMenu>
-    <NavLink text="Graphs" link="/statistics" />
-    <DropdownMenu items={ethics}>
-      <NavLink text="Cookies" link="" />
+    <DropdownMenu items={graphs}>
+      <NavLink text="Web3" link="" />
     </DropdownMenu>
   </div>
 </nav>
@@ -70,7 +69,13 @@
         href="/statistics"
         on:click={() => {
           openMenu = !openMenu;
-        }}>Graphs</a
+        }}>Biance API</a
+      >
+      <a
+        href="/tracker"
+        on:click={() => {
+          openMenu = !openMenu;
+        }}>ETH tracker</a
       >
     </div>
   {/if}

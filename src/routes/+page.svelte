@@ -7,6 +7,7 @@
 <article
   class="px-4 flex flex-col items-center w-full pt-20 lg:pt-16"
   aria-label="Home page"
+  style="min-height: 100vh;"
 >
   <section class="w-full pb-4" aria-label="Gallery showcase">
     <ImageCarousel images={data.showcase} />
