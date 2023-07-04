@@ -1,8 +1,7 @@
 import Moralis from "moralis";
 import dotenv from "dotenv";
-import pkg from "web3-utils";
+import { fromWei } from "web3-utils";
 dotenv.config();
-const { fromWei } = pkg;
 
 try {
   await Moralis.start({
