@@ -1,5 +1,5 @@
 <script>
-  import DropdownButton from "$lib/components/shared/DropdownButton.svelte";
+  import DropdownButton from "$lib/components/buttons/DropdownButton.svelte";
   let walletInput;
 </script>
 

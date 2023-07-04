@@ -1,10 +1,8 @@
 <script>
   import { onDestroy, onMount } from "svelte";
   import { fade, scale } from "svelte/transition";
-
   import TimeIntervalChart from "$lib/components/charts/TimeIntervalChart.svelte";
   import { getPriceHistory, getCurrentPrice } from "$lib/api/binance";
-  import BaseChart from "$lib/components/charts/BaseChart.svelte";
   export let data;
 
   let bitcoinHistory = data.bitcoinHistory;

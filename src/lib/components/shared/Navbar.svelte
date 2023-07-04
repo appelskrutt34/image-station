@@ -1,5 +1,5 @@
 <script>
-  import DropdownMenu from "./DropdownMenu.svelte";
+  import DropdownMenu from "$lib/components/buttons/DropdownMenu.svelte";
   import NavLink from "./NavLink.svelte";
 
   import { introduction, graphs } from "$lib/data/categories";
@@ -57,13 +57,19 @@
         href="/history"
         on:click={() => {
           openMenu = !openMenu;
-        }}>Timeline</a
+        }}>AI timeline</a
+      >
+      <a
+        href="/about"
+        on:click={() => {
+          openMenu = !openMenu;
+        }}>About AI</a
       >
       <a
         href="/gallery"
         on:click={() => {
           openMenu = !openMenu;
-        }}>Art gallery</a
+        }}>AI art gallery</a
       >
       <a
         href="/statistics"

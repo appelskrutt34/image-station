@@ -1,5 +1,5 @@
 <script>
-  import IconLink from "../lib/components/IconLink.svelte";
+  import IconLink from "$lib/components/buttons/IconLink.svelte";
   import ImageCarousel from "./sections/ImageCarousel.svelte";
   export let data;
 </script>

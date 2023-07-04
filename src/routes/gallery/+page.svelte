@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { fade } from "svelte/transition";
-  import IconButton from "../../lib/components/shared/IconButton.svelte";
+  import IconButton from "$lib/components/buttons/IconButton.svelte";
   import { getGallery } from "$lib/api/directus";
 
   export let data;

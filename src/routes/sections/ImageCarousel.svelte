@@ -1,7 +1,7 @@
 <script>
   import Carousel from "svelte-carousel";
   import { browser } from "$app/environment";
-  import IconButton from "../../lib/components/shared/IconButton.svelte";
+  import IconButton from "$lib/components/buttons/IconButton.svelte";
   import { innerWidth } from "$lib/stores/data";
   export let images = [];
   $: particlesToShow = $innerWidth > 1024 ? 6 : $innerWidth > 768 ? 4 : 2;
